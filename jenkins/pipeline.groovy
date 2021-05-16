@@ -36,7 +36,11 @@ pipeline {
         // failed, record the test results and archive the jar file.
         always {
             junit '**/target/surefire-reports/TEST-*.xml'
-            emailext attachLog: true, body: ' Please go to ${BUILD_URL} and verify the build', compressLog: true, recipientProviders: [requestor(), upstreamDevelopers()], subject: 'Job \'${JOB_NAME}\' (${BUILD_NUMBER}) is waiting for input'
+            emailext attachLog: true,
+                    body: ' Please go to ${BUILD_URL} and verify the build',
+                    compressLog: true,
+                    recipientProviders: [requestor(), upstreamDevelopers()],
+                    subject: 'Job \'${JOB_NAME}\' (${BUILD_NUMBER}) is waiting for input'
         }
         success {
             archiveArtifacts 'target/*.jar'
