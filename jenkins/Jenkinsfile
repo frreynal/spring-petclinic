@@ -2,15 +2,16 @@ pipeline {
     agent any
     triggers {pollSCM('* * * * *')}
     stages {
-        stage('Checkout') {
-           steps {
+    // implicit checkout stage
+     /*   stage('Checkout') {
+            steps {
                 // Get some code from a GitHub repository
                 git branch: 'main',
                         credentialsId: 'bcbc8f20-45f3-4305-988a-1bcceca9c308',
                         url: 'https://github.com/frreynal/spring-petclinic.git'
 
             }
-        }
+        }*/
 
         stage('Format') {
             steps {
